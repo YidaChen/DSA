@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <iostream>
 #include <list>
 #include <queue>
+#include <stack>
 using namespace std;
 
 class Graph {
@@ -85,18 +87,8 @@ public:
             printf("\n");
         }
     }
-};
-
-int main(){
     
-    Graph g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
-    g.addEdge(2, 3);
-    g.addEdge(3, 3);
- 
-    g.DFS(0);
- 
-}
+    void topologicalSortUtil(int v, bool visited[], stack<int> &stack);
+    
+    void topologicalSort();
+};
