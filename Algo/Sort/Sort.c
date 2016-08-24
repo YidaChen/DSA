@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define length(arr) (sizeof(arr)/sizeof(arr[0]))
 void swap(int *x, int *y)
@@ -102,6 +103,30 @@ void mergeSort(int arr[], int l, int r)
     
     merge(arr, l, m, r);
 }
+int partition(int arr[],int l,int r)
+{
+    int pivot = arr[r];
+    
+    for(int i = l; i < r; i++)
+    {
+        if(arr[i] <= pivot)
+        {
+            swap(&arr[i], &arr[l]);
+            l++;
+        }
+    }
+    swap(&arr[r], &arr[l]);
+    return l;
+}
+void quickSort(int arr[], int l, int r)
+{
+    if(l >= r) return;
+    
+    int p = partition(arr, l, r);
+    
+    quickSort(arr, l, p - 1);
+    quickSort(arr, p + 1, r);
+}
 void maxHeapifyDown(int arr[], int p, int len)
 {
     int l = 2 * p + 1;
@@ -132,6 +157,21 @@ void heapSort(int arr[], int len)
         maxHeapifyDown(arr, 0, len-1);
     }
 }
+//I don't understand countingSort, so I modify it, what is this sort'name?
+void countingSort(int arr[], int len, int range)
+{
+    //int output[len]; 
+    int count[range+1];
+    memset(count, 0, sizeof(count));
+    
+    int i;
+    for(i = 0; i < len; i++)
+        count[arr[i]]++;
+    
+    for(int j = 0, i = 0; i <= range; i++)
+        if(count[i]-- > 0)
+            arr[j++] = i--;
+}
 void printArray(int arr[], int len)
 {
     for(int i = 0; i < len; i++)
@@ -140,10 +180,12 @@ void printArray(int arr[], int len)
 }
 int main()
 {
-    int arr[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int arr[] = {9, 8, 7, 6, 5, 4, 3, 2, 20, 1, 1};
     int len = length(arr);
-    heapSort(arr, len);
+    //heapSort(arr, len);
     //mergeSort(arr, 0, len - 1);
+    //quickSort(arr, 0, len - 1);
     
+    countingSort(arr, len, 20);
     printArray(arr, len);
 }

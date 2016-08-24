@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Directed_Graph.h"
 
 void Graph::topologicalSortUtil(int v, bool visited[], stack<int> &stack)
 {
