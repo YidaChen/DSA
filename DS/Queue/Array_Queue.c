@@ -47,7 +47,8 @@ int dequeue(Queue *queue){
 int front(Queue *queue){
     
     if(isEmpty(queue)) return NULL;
-    return queue->array[queue->front];
+    int front = (queue->front+1) % queue->capacity;
+    return queue->array[front];
 }
 
 int rear(Queue *queue){
