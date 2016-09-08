@@ -24,3 +24,26 @@ int main()
     int n = sizeof(s)/sizeof(s[0]);
     printMaxActivities(s, f, n);
 }
+/*
+Let N denote the number of activities and
+{I}  the activity I  ( 1 <= I <= N )
+For each {I}, consider S[I] and F[I] its starting and finishing time
+Sort the activities in the increasing order of their finishing time
+- that is, for every I < J we must have F [I] <= F [J]
+
+//  A denotes the set of the activities that will be selected
+A = {1}
+//  J denotes the last activity selected
+J = 1
+For I = 2  to N
+// we can select activity 'I' only if the last activity
+// selected has already been finished
+      If S [I] >= F [J]
+//  select activity 'I'
+                A = A + {I}
+// Activity 'I' now becomes the last activity selected
+                J = I
+      Endif
+Endfor
+Return A
+*/

@@ -56,7 +56,7 @@ void KruskalMST(Graph *graph)
     int V = graph->V;
     int E = graph->E;
     
-    Edge result[V];  // Tnis will store the resultant MST
+    Edge result[V-1];  // Tnis will store the resultant MST
     int e = 0;  // An index variable, used for result[]
     int i = 0;  // An index variable, used for sorted edges
     
